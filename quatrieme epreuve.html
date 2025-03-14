@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤸‍♂️ Épreuve 4 : Parcours d’Infiltration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('image4.jpg'); /* Remplacez par l'URL de votre image */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #ffcc00;
+        }
+        .button {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        #timer {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            width: 60%;
+            border-radius: 5px;
+            border: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤸‍♂️ Épreuve 4 : Parcours d’Infiltration</h1>
+        <p><strong>📍 Lieu :</strong>160 morton</p>
+        <p>l'agent double a revele quelque informations sur la position du code :</p>
+        <p>Je suis devant la maison, On m'ouvre pour voir des nouvelles.</p>
+        <p><strong>🏃 Mission :</strong> vous avez dix minutes pour saisir le mot de passe.</p>
+        
+        <h2>🎯 Défi</h2>
+        <p>Vous avez 10 minutes pour terminer le parcours. Une fois terminé, entrez le mot de passe et validez votre mission.</p>
+        
+        <p id="timer">Temps restant : 10:00</p>
+        
+        <input type="text" id="password" placeholder="Entrez le mot de passe...">
+        <button class="button" onclick="validatePassword()">Valider le Mot de Passe</button>
+        
+        <p id="result" class="hidden">✅ Félicitations, vous avez réussi l’infiltration ! Redirection en cours...</p>
+        <p id="fail" class="hidden">🚨 Alarme déclenchée ! On vient de vous attraper !</p>
+        <p id="wrong" class="hidden">❌ Mot de passe incorrect. Réessayez !</p>
+    </div>
+
+    <script>
+        let timeLeft = 600; // 10 minutes en secondes
+        let timerElement = document.getElementById("timer");
+        
+        function startTimer() {
+            let timerInterval = setInterval(function() {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                timerElement.textContent = `Temps restant : ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById("fail").classList.remove("hidden");
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+        
+        function validatePassword() {
+            var password = document.getElementById("password").value.trim();
+            var correctPassword = "la boîte au lettre";
+            
+            if (password.toLowerCase() === correctPassword) {
+                document.getElementById("result").classList.remove("hidden");
+                document.getElementById("wrong").classList.add("hidden");
+                setTimeout(function() {
+                    window.location.href = "cinquieme epreuve.html"; // Redirection vers la prochaine épreuve
+                }, 3000);
+            } else {
+                document.getElementById("wrong").classList.remove("hidden");
+            }
+        }
+        
+        startTimer();
+    </script>
+</body>
+</html>
