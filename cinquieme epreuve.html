@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📦 Épreuve 5 : Déminage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('image5.jpg'); /* Remplacez par l'URL de votre image */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #ffcc00;
+        }
+        .input-container {
+            margin-top: 20px;
+        }
+        input {
+            padding: 10px;
+            width: 60%;
+            border-radius: 5px;
+            border: none;
+        }
+        .button {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        #timer {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 Épreuve 5 : Déminage</h1>
+        <p><strong>📍 Lieu :</strong> exterieur</p>
+        <p><strong>🧩 Mission :</strong> Résolvez l’énigme pour désamorcer la bombe !</p>
+        
+        <h2>💡 Énigme</h2>
+        <p>"Trois fils sont devant vous : rouge, bleu et vert. Voici l'indice : <em>Le ciel est clair mais le feu brûle.</em> Quel fil devez-vous couper ?"</p>
+        
+        <p id="timer">Temps restant : 5:00</p>
+        
+        <div class="input-container">
+            <input type="text" id="answer" placeholder="Entrez la couleur du fil à couper...">
+            <button class="button" onclick="checkAnswer()">Couper</button>
+        </div>
+
+        <p id="result" class="hidden">✅ Bravo ! Vous avez désamorcé la bombe et obtenu l'indice suivant. Redirection en cours...</p>
+        <p id="wrong" class="hidden">❌ Mauvaise réponse ! La bombe est encore active. Essayez encore.</p>
+        <p id="fail" class="hidden">💥 Explosion ! Mission échouée.</p>
+    </div>
+
+    <script>
+        let timeLeft = 300; // 5 minutes en secondes
+        let timerElement = document.getElementById("timer");
+        
+        function startTimer() {
+            let timerInterval = setInterval(function() {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                timerElement.textContent = `Temps restant : ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById("fail").classList.remove("hidden");
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+        
+        function checkAnswer() {
+            var answer = document.getElementById("answer").value.toLowerCase().trim();
+            var correctAnswer = "bleu";
+            
+            if (answer === correctAnswer) {
+                document.getElementById("result").classList.remove("hidden");
+                document.getElementById("wrong").classList.add("hidden");
+                setTimeout(function() {
+                    window.location.href = "sixieme epreuve.html"; // Redirection vers la prochaine épreuve
+                }, 3000);
+            } else {
+                document.getElementById("wrong").classList.remove("hidden");
+                document.getElementById("result").classList.add("hidden");
+            }
+        }
+        
+        startTimer();
+    </script>
+</body>
+</html>

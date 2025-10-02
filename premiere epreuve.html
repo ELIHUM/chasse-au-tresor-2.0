@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 Épreuve 1 : Décryptage Codé</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('image1.0.jpg'); /* Remplacez par l'URL de votre image */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #ffcc00;
+        }
+        .input-container {
+            margin-top: 20px;
+        }
+        input {
+            padding: 10px;
+            width: 60%;
+            border-radius: 5px;
+            border: none;
+        }
+        .button {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Épreuve 1 : Décryptage Codé</h1>
+        <p><strong>📍 Lieu :</strong> 160 Morton</p>
+        <p><strong>🕵️‍♂️ Mission :</strong>Le message chiffré doit être décrypté pour révéler l’emplacement précis de la prochaine épreuve. Sur place, une lettre et un code à 5 chiffres serviront de mot de passe.</p>
+        
+        <h2>📜 Message Codé</h2>
+        <p><strong>le message secret est en code en utilisant le chiffrement de cesar  :</strong>h ejzeya mqa pq yandnca oa pnkqra wq lnaiean apwca zwjo hwqznu</p>
+        <p>indice Décalage : +4</p>
+
+        <div class="input-container">
+            <input type="text" id="answer" placeholder="Entrez votre réponse ici...">
+            <button class="button" onclick="checkAnswer()">Valider</button>
+        </div>
+
+        <p id="result" class="hidden">✅ Bravo, vous avez trouvé l'indice ! Redirection en cours...</p>
+        <p id="wrong" class="hidden">❌ Mauvaise réponse. Essayez encore !</p>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            var answer = document.getElementById("answer").value.toLowerCase().trim();
+            var correctAnswer = "12354".toLowerCase();
+            
+            if (answer === correctAnswer) {
+                document.getElementById("result").classList.remove("hidden");
+                document.getElementById("wrong").classList.add("hidden");
+                
+                setTimeout(function() {
+                    window.location.href = "deuxieme epreuve.html"; // Redirection vers la prochaine épreuve
+                }, 3000);
+            } else {
+                document.getElementById("wrong").classList.remove("hidden");
+                document.getElementById("result").classList.add("hidden");
+            }
+        }
+    </script>
+</body>
+</html>
